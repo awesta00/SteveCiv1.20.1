@@ -1,0 +1,3 @@
+To make an entity:
+-Renderer
+-Entity behaviour

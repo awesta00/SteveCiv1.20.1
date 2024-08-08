@@ -14,7 +14,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.swedishfish.steveciv.entity.ModEntities;
+import net.swedishfish.steveciv.entity.client.GuardRenderer;
 import net.swedishfish.steveciv.entity.client.RhinoRenderer;
+import net.swedishfish.steveciv.entity.custom.SteveGuard;
 import net.swedishfish.steveciv.item.ModItems;
 import net.swedishfish.steveciv.item.ModCreativeModeTabs;
 import org.slf4j.Logger;
@@ -67,6 +69,7 @@ public class SteveCiv
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(ModEntities.RHINO.get(), RhinoRenderer::new);
+            EntityRenderers.register(ModEntities.STEVE_GUARD.get(), GuardRenderer::new);
         }
     }
 }

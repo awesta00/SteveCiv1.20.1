@@ -14,7 +14,6 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -124,10 +123,10 @@ public class RhinoEntity extends Animal {
         return Animal.createLivingAttributes()
                 .add(Attributes.MAX_HEALTH,40D)
                 .add(Attributes.MOVEMENT_SPEED,0.23D)
-                .add(Attributes.ARMOR_TOUGHNESS,0.1f)
+                .add(Attributes.ARMOR_TOUGHNESS,0.4f)
                 .add(Attributes.ATTACK_KNOCKBACK, 9D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.99)
-                .add(Attributes.ATTACK_DAMAGE,3f)
+                .add(Attributes.ATTACK_DAMAGE,6f)
                 .add(Attributes.FOLLOW_RANGE,24D);
     }
 

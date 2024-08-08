@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.swedishfish.steveciv.SteveCiv;
 import net.swedishfish.steveciv.entity.ModEntities;
 import net.swedishfish.steveciv.entity.custom.RhinoEntity;
+import net.swedishfish.steveciv.entity.custom.SteveGuard;
 
 
 @Mod.EventBusSubscriber(modid = SteveCiv.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -15,5 +16,6 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event){
         event.put(ModEntities.RHINO.get(), RhinoEntity.createAttributes().build());
+        event.put(ModEntities.STEVE_GUARD.get(), SteveGuard.createAttributes().build());
     }
 }
