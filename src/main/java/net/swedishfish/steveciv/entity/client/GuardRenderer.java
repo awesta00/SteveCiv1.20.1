@@ -12,11 +12,14 @@ import net.swedishfish.steveciv.entity.custom.SteveGuard;
 public class GuardRenderer  extends HumanoidMobRenderer<SteveGuard, HumanoidModel<SteveGuard>> {
 
 
-    public GuardRenderer(EntityRendererProvider.Context context){
-        super(context, new HumanoidModel<>(context.bakeLayer(ModelLayers.PLAYER)),0.5f);
+    public GuardRenderer(EntityRendererProvider.Context context) {
+        super(context, new HumanoidModel<>(context.bakeLayer(ModelLayers.PLAYER)), 0.5F);
+        this.addLayer(new HumanoidArmorLayer<>(
+                this,
+                new HumanoidModel<>(context.bakeLayer(ModelLayers.PLAYER_INNER_ARMOR)),
+                new HumanoidModel<>(context.bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR)),
+                context.getModelManager()));
     }
-
-
 
     @Override
     public ResourceLocation getTextureLocation(SteveGuard pEntity) {

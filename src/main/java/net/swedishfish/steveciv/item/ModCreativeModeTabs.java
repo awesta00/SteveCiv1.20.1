@@ -21,6 +21,7 @@ public class ModCreativeModeTabs {
                     .displayItems((parameters, output) -> {
 
                         output.accept(ModItems.RHINO_SPAWN_EGG.get());
+                        output.accept(ModItems.GUARD_STEVE_SPAWN_EGG.get());
                     })
                     .build());
 

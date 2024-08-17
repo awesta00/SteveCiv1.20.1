@@ -20,8 +20,8 @@ public class ModEntities {
 
 
     public static final RegistryObject<EntityType<SteveGuard>> STEVE_GUARD =
-            ENTITY_TYPES.register("steve_guard", () -> EntityType.Builder.of(SteveGuard::new, MobCategory.MONSTER)
-                    .sized(0.6F, 1.8F).build("steveguard"));
+            ENTITY_TYPES.register("steve_warrior", () -> EntityType.Builder.of(SteveGuard::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.8F).build("steve_warrior"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

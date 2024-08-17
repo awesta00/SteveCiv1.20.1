@@ -1,5 +1,8 @@
 {
   "creativetab.steveciv_tab": "Steve Civilization",
-  "item.steveciv.rhino_spawn_egg": "Rhino Spawn Egg"
+  "item.steveciv.rhino_spawn_egg": "Rhino Spawn Egg",
+  "item.steveciv.guard_steve_spawn_egg": "Warrior Steve Spawn Egg",
+  "entity.steveciv.rhino": "Rhino",
+  "entity.steveciv.steve_warrior": "Warrior Steve"
 
 }

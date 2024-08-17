@@ -1,3 +1,160 @@
 To make an entity:
 -Renderer
 -Entity behaviour
+-Registry
+-PNG
+
+By nature, the Steve civilization is hostile to the player and monsters
+Each steve has random attribute modifiers
+Steves get random inventories for num of pearls, gaps, pots, cobwebs
+
+Types of Steves:
+
+Normal Steve
+    -Not hostile
+    -Can be assigned to custom professions for player trading
+
+Outcast (warrior) Steve
+    -neutral
+    -can be found in shacks randomly generated
+    -farm/hunt (use villager registries)
+    -special warrior features??
+
+Warrior Steve
+    -is hostile
+    -melee attack
+        -needs longer reach/atk speed????
+        -battle cry?
+        -level up system?
+        -can retreat upon low health?
+
+Elite Guard
+    -can jump and crit player
+    -use pots to regen
+    -can e-pearl after player
+    -can retreat when low
+
+Archer Steve
+    -is hostile
+    -bow attack
+
+Steve Knight (on horseback)
+
+Steve Warfare Engineer (shoot tnt, place ladders to scale walls)
+
+Steve Wizard
+
+Steve Officer
+
+Steve King
+
+Steve Emperor (final boss)
+
+Encampments:
+-30% chance to spawn 50 blocks from players sleeping in bed
+-spawn tents, small campsite with warriors, archers, and 1 officer
+-spawn naturally too
+-if banner is not broken, it upgrades to a fort
+-very slow warrior/archer spawn rate
+
+Forts:
+-wooden walls/towers with more guards
+
+Keep/Castle
+
+Kingdom
+
+Bow swapping????
+Extra reach: check
+Strafing/Jumping: check
+Target Switching: check
+Weapon Selection: check
+Shield Blocking: check
+Armor: check
+Healing: check
+Ender pearls: check
+Retreating: Not working
+Place cobwebs: cancelled (working code) they get stuck in own cobwebs mostly
+Potions: cancelled (but working code)
+
+
+
+
+  if (handDelayTicks == 1) {
+//                // Remove the water block
+//                this.steve.level().removeBlock(stevePos, false);
+//
+//                // Switch back to iron sword
+
+//            }
+
+particles
+this.level().addParticle(ParticleTypes.HEART, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), d0, d1, d2);
+
+cow code to get milk
+public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
+      ItemStack itemstack = pPlayer.getItemInHand(pHand);
+      if (itemstack.is(Items.BUCKET) && !this.isBaby()) {
+         pPlayer.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
+         ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, pPlayer, Items.MILK_BUCKET.getDefaultInstance());
+         pPlayer.setItemInHand(pHand, itemstack1);
+         return InteractionResult.sidedSuccess(this.level().isClientSide);
+      } else {
+         return super.mobInteract(pPlayer, pHand);
+      }
+   }
+
+
+
+//    protected int potDelay = randomTimeGen(8,20);
+//    protected int numPots = randomGen(0,5);
+//    public int getNumPots(){
+//        return numPots;
+//    }
+//throw potions at player  ---------DOESN'T WORK WELL WHEN STEVE IS IN GROUPS-----------------------------------------
+//            if (potDelay < 1 && getNumPots() > 0 && this.steve.distanceTo(this.steve.getTarget()) < 10.0F && this.steve.distanceTo(this.steve.getTarget()) > 5.0F) {
+//
+//                if (random.nextFloat() < 0.07) {
+//                Random rand = new Random();
+//                int potionChoice = rand.nextInt(3);
+//
+//                ItemStack potionToThrow = null;
+//
+//                switch (potionChoice) {
+//                    case 0:
+//                        potionToThrow = new ItemStack(Items.SPLASH_POTION);
+//                        PotionUtils.setPotion(potionToThrow, Potions.WEAKNESS);
+//                        break;
+//                    case 1:
+//                        potionToThrow = new ItemStack(Items.SPLASH_POTION);
+//                        PotionUtils.setPotion(potionToThrow, Potions.SLOWNESS);
+//                        break;
+//                    case 2:
+//                        potionToThrow = new ItemStack(Items.SPLASH_POTION);
+//                        PotionUtils.setPotion(potionToThrow, Potions.POISON);
+//                        break;
+//
+//                }
+//
+//                //equip
+//                this.steve.setItemInHand(InteractionHand.MAIN_HAND, potionToThrow);
+//                this.steve.swing(InteractionHand.MAIN_HAND);
+//
+//                //throw
+//                ThrownPotion thrownPotion = new ThrownPotion(this.steve.level(), this.steve);
+//                thrownPotion.setItem(potionToThrow);
+//                thrownPotion.shoot(this.steve.getTarget().getX() - this.steve.getX(),
+//                        this.steve.getTarget().getEyeY() - thrownPotion.getY(),
+//                        this.steve.getTarget().getZ() - this.steve.getZ(),
+//                        1.0F, 8.0F);
+//                this.steve.level().addFreshEntity(thrownPotion);
+//
+//
+//                potDelay = randomTimeGen(8, 20);
+//                numPots--;
+//                handDelayTicks = 15;
+//             }
+//
+//            }
+//            potDelay--;
+
