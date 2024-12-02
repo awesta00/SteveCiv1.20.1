@@ -14,11 +14,15 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.swedishfish.steveciv.entity.ModEntities;
+import net.swedishfish.steveciv.entity.client.ElytraSteveRenderer;
+import net.swedishfish.steveciv.entity.client.EngineerSteveRenderer;
 import net.swedishfish.steveciv.entity.client.GuardRenderer;
-import net.swedishfish.steveciv.entity.client.RhinoRenderer;
-import net.swedishfish.steveciv.entity.custom.SteveGuard;
+import net.swedishfish.steveciv.entity.custom.ElytraSteve;
+import net.swedishfish.steveciv.entity.custom.EngineerSteve;
+import net.swedishfish.steveciv.event.ExplosionEventHandler;
 import net.swedishfish.steveciv.item.ModItems;
 import net.swedishfish.steveciv.item.ModCreativeModeTabs;
+import net.swedishfish.steveciv.sound.ModSounds;
 import org.slf4j.Logger;
 
 
@@ -39,9 +43,14 @@ public class SteveCiv
         ModItems.register(modEventBus);
         ModEntities.register(modEventBus);
 
+        ModSounds.register(modEventBus);
+        MinecraftForge.EVENT_BUS.register(ExplosionEventHandler.class);
+
+
         modEventBus.addListener(this::commonSetup);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
     }
@@ -53,7 +62,6 @@ public class SteveCiv
     // Add the rhino spawn egg to creative spawn eggs menu
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.SPAWN_EGGS){
-            event.accept(ModItems.RHINO_SPAWN_EGG);
         }
     }
 
@@ -68,8 +76,9 @@ public class SteveCiv
     {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            EntityRenderers.register(ModEntities.RHINO.get(), RhinoRenderer::new);
             EntityRenderers.register(ModEntities.STEVE_GUARD.get(), GuardRenderer::new);
+            EntityRenderers.register(ModEntities.ELYTRA_STEVE.get(), ElytraSteveRenderer::new);
+            EntityRenderers.register(ModEntities.ENGINEER_STEVE.get(), EngineerSteveRenderer::new);
         }
     }
 }

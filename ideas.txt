@@ -13,13 +13,11 @@ Types of Steves:
 Normal Steve
     -Not hostile
     -Can be assigned to custom professions for player trading
-
 Outcast (warrior) Steve
     -neutral
     -can be found in shacks randomly generated
     -farm/hunt (use villager registries)
     -special warrior features??
-
 Warrior Steve
     -is hostile
     -melee attack
@@ -27,27 +25,13 @@ Warrior Steve
         -battle cry?
         -level up system?
         -can retreat upon low health?
-
 Elite Guard
-    -can jump and crit player
-    -use pots to regen
-    -can e-pearl after player
-    -can retreat when low
-
 Archer Steve
-    -is hostile
-    -bow attack
-
 Steve Knight (on horseback)
-
 Steve Warfare Engineer (shoot tnt, place ladders to scale walls)
-
 Steve Wizard
-
 Steve Officer
-
 Steve King
-
 Steve Emperor (final boss)
 
 Encampments:
@@ -79,6 +63,11 @@ Potions: cancelled (but working code)
 
 
 
+/summon armor_stand ~ ~ ~ {NoBasePlate:1b,Tags:["EncampmentBanner"],ArmorItems:[{},{},{},{id:"minecraft:light_blue_banner",Count:1b,tag:{BlockEntityTag:{Patterns:[{Color:15,Pattern:"glb"},{Color:15,Pattern:"gra"},{Color:15,Pattern:"tts"},{Color:0,Pattern:"glb"}]}}}],Rotation:[90.0f,0.0f]}
+
+/give @p chest{BlockEntityTag:{LootTable:"steveciv:chests/encampment_common"}}
+
+/give @p minecraft:light_blue_banner{BlockEntityTag:{Patterns:[{Color:15,Pattern:"glb"},{Color:15,Pattern:"gra"},{Color:15,Pattern:"tts"},{Color:0,Pattern:"glb"}]}}
 
   if (handDelayTicks == 1) {
 //                // Remove the water block
@@ -158,3 +147,19 @@ public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
 //            }
 //            potDelay--;
 
+
+
+        LivingEntity currentTarget = this.steve.getTarget();
+
+
+//        List<LivingEntity> nearbyEntities = this.steve.level().getEntitiesOfClass(LivingEntity.class, this.steve.getBoundingBox().inflate(8.0D),
+//                entity -> entity != this.steve && entity.isAlive() && entity != currentTarget);
+//
+//        for (LivingEntity entity : nearbyEntities) {
+//            if (entity.hurtTime > 0 && entity.distanceTo(this.steve) < 4D) {
+//                if (currentTarget == null || entity.distanceTo(this.steve) < currentTarget.distanceTo(this.steve)) {
+//                    this.steve.setTarget(entity);
+//                    break;
+//                }
+//            }
+//        }

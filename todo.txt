@@ -1,0 +1,25 @@
+Encampment fixes:
+lecturn starts at page 3 (not page 1)
+add captain once made?
+Make new block entity as banner?
+
+The structures will spawn randomly as normal
+No longer will they spawn near the player.
+Instead, only the banner markers will spawn
+
+Paratrooper:
+-spawn in and fly toward player with elytra/rocket
+
+if have target (player):
+    -jump->engage elytra -> rocket at upward angle towards them
+    .
+
+Engineer:
+-scan for blocks like fences, doors, etc (entrance blocks) and place/ignite tnt
+    -if not entrance blocks, search for wall blocks (stone bricks, etc) to place tnt
+    -TNT ONLY AFFECTS TARGETTED BLOCKS
+    -Make targetting blocks better (closest one!! Can also be slightly randomized so in armies they don't all target 1 point)
+    -he only runs away 1 direction????
+
+make it so steve can place ladders and break blocks above him
+add a hunter with super good pvp

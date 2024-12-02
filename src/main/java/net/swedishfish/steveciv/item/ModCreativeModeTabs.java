@@ -20,8 +20,12 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.steveciv_tab"))
                     .displayItems((parameters, output) -> {
 
-                        output.accept(ModItems.RHINO_SPAWN_EGG.get());
+                        output.accept(ModItems.ENGINEER_STEVE_SPAWN_EGG.get());
+                        output.accept(ModItems.ELYTRA_STEVE_SPAWN_EGG.get());
                         output.accept(ModItems.GUARD_STEVE_SPAWN_EGG.get());
+
+                        output.accept(ModItems.SOGNO_DI_VOLARE_MUSIC_DISC.get());
+
                     })
                     .build());
 

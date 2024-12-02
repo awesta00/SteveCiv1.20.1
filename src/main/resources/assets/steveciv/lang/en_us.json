@@ -1,8 +1,13 @@
 {
   "creativetab.steveciv_tab": "Steve Civilization",
-  "item.steveciv.rhino_spawn_egg": "Rhino Spawn Egg",
   "item.steveciv.guard_steve_spawn_egg": "Warrior Steve Spawn Egg",
-  "entity.steveciv.rhino": "Rhino",
-  "entity.steveciv.steve_warrior": "Warrior Steve"
+  "entity.steveciv.steve_warrior": "Warrior Steve",
+  "item.steveciv.elytra_steve_spawn_egg": "Paratrooper Steve Spawn Egg",
+  "entity.steveciv.elytra_steve": "Paratrooper Steve",
+  "item.steveciv.engineer_steve_spawn_egg": "Engineer Steve Spawn Egg",
+  "entity.steveciv.engineer_steve": "Engineer Steve",
+  "item.steveciv.sogno_di_volare_music_disc": "Music Disc",
+  "item.steveciv.sogno_di_volare_music_disc.desc": "Christopher Tin - Sogno Di Volare",
+  "sounds.steveciv.sogno_di_volare": "Sogno Di Volare"
 
 }
