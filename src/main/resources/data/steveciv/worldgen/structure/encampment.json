@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:jigsaw",
+  "biomes": "#steveciv:has_structure/encampment",
+  "spawn_overrides": {},
+  "adapt_noise": false,
+  "step": "surface_structures",
+  "terrain_adaptation": "beard_thin",
+  "start_pool": "steveciv:encampment",
+  "size": 7,
+  "project_start_to_heightmap": "WORLD_SURFACE_WG",
+  "start_height": {
+    "absolute": 0
+  },
+  "max_distance_from_center": 100,
+  "use_expansion_hack": false
+}

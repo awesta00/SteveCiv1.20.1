@@ -10,7 +10,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Sheep;
@@ -18,17 +17,16 @@ import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
+import net.swedishfish.steveciv.entity.ai.AvoidTNT;
 import net.swedishfish.steveciv.entity.ai.SteveGuardAttackGoals;
 import org.jetbrains.annotations.Nullable;
 
+
 public class SteveGuard extends Monster {
     protected int shieldBlockTicks = -1;
-//    public int fireDelay = 20;
-
 
 
     public SteveGuard(EntityType<? extends Monster> pEntityType, Level pLevel) {
@@ -41,13 +39,12 @@ public class SteveGuard extends Monster {
     public void tick() {
         super.tick();
 
-        //friendly fire
-        LivingEntity currentTarget = this.getTarget();
-        //friendly fire prevention between steves
-        if (currentTarget instanceof SteveGuard) {
-            this.setTarget(null);
-            return;
-        }
+
+        if(this.getTarget() == null || !(this.getTarget() instanceof Player)){
+            Player nearestPlayer = this.level().getNearestPlayer(this, 100.0D); //range 100 blocks
+            if (nearestPlayer != null && !nearestPlayer.isCreative()) {
+                this.setTarget(nearestPlayer);
+            }        }
 
         if(shieldBlockTicks >= 0){
             shieldBlockTicks--;
@@ -63,38 +60,30 @@ public class SteveGuard extends Monster {
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
 
-        this.goalSelector.addGoal(2, new SteveGuardAttackGoals(this, 1.5D, true));
-//        this.goalSelector.addGoal(2, new SteveGuardExtinguishFireGoal(this));
-//        this.goalSelector.addGoal(1, new (this));
+        this.goalSelector.addGoal(2, new SteveGuardAttackGoals(this, 1.35D, true));
+        this.goalSelector.addGoal(1, new AvoidTNT(this));
 
-        this.goalSelector.addGoal(5, new TemptGoal(this, 1.15D, Ingredient.of(Items.DIAMOND), false));
+//        this.goalSelector.addGoal(1, new Vindicator.VindicatorBreakDoorGoal(this));
+//        this.goalSelector.addGoal(2, new AbstractIllager.RaiderOpenDoorGoal(this));
+
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.15D));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 3f));
         this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
-
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
-        this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Vex.class, 6.0F, 1.0D, 1.25D));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Sheep.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Zombie.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Skeleton.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Spider.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Husk.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Stray.class, true));
-
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Sheep.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
-
 
 
     public static AttributeSupplier.Builder createAttributes(){
         return Animal.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH,30D)
-                .add(Attributes.MOVEMENT_SPEED,0.23D)
+                .add(Attributes.MAX_HEALTH,26D)
+                .add(Attributes.MOVEMENT_SPEED,0.228D)
                 .add(Attributes.ARMOR_TOUGHNESS,0.1f)
                 .add(Attributes.ATTACK_KNOCKBACK, 1.5D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.37)
-                .add(Attributes.ATTACK_DAMAGE,3f)
+                .add(Attributes.ATTACK_DAMAGE,2.5f)
                 .add(Attributes.ATTACK_SPEED,30f)
-                .add(Attributes.FOLLOW_RANGE,50D);
+                .add(Attributes.FOLLOW_RANGE,100D);
     }
 
 
@@ -102,25 +91,12 @@ public class SteveGuard extends Monster {
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData spawnData, @Nullable CompoundTag dataTag) {
         SpawnGroupData entityData = super.finalizeSpawn(level, difficulty, reason, spawnData, dataTag);
 
-        this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.IRON_CHESTPLATE));
-        this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(Items.IRON_LEGGINGS));
-        this.setItemSlot(EquipmentSlot.FEET, new ItemStack(Items.IRON_BOOTS));
         this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(Items.SHIELD));
-
-//        this.getItemBySlot(EquipmentSlot.MAINHAND).enchant(Enchantments.SHARPNESS, 2); // Example enchantment
+//        this.getItemBySlot(EquipmentSlot.MAINHAND).enchant(Enchantments.SHARPNESS, 2);
 
         return entityData;
     }
 
-//    @Override
-//    public void tick() {
-//        super.tick();
-//
-//        // Handle shield block pause
-//        if (shieldBlockTicks > 0) {
-//            shieldBlockTicks--;
-//        }
-//    }
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
@@ -152,8 +128,6 @@ public class SteveGuard extends Monster {
     }
 
 
-
-
     @Override
     protected boolean shouldDropLoot() {
         return false;
@@ -162,7 +136,6 @@ public class SteveGuard extends Monster {
     public boolean removeWhenFarAway(double pDistanceToClosestPlayer) {
         return false;
     }
-
 
 
     @Override
